@@ -1,0 +1,56 @@
+using System;
+
+public class Program
+{
+    public string _yemekIstenilen = "";
+    public int _valuue = 0;
+    public static void Main()
+    {
+        string yemekIstenilen = "";
+        int valuue = 0;
+
+
+        bool dogruDeger = false;
+        while (dogruDeger == false)//Geçerli input mu?
+        {
+
+            Console.Write("Yemek istediğiniz çikolata sayısını giriniz: ");
+            yemekIstenilen = Console.ReadLine();
+
+
+            if (int.TryParse(yemekIstenilen, out valuue))//İntegera dönüştürülür.
+            {
+                dogruDeger = true;//integer girildiyse döngüden çıkar.
+                Console.Write("Mehmet"+valuue+" parça çikolata yemek istiyor.\n\n");
+            }
+            else { Console.Write("yanlış değer tekrar deneyiniz\n"); }
+        }
+
+
+        for (int j = 0; j < 21; j++)//21 olması sebebi 1000000'a ulaşmış olması
+        {
+
+            double sonuc = Math.Pow(2, j);//2'nin kuvvetleri hesaplanıyor
+            if (sonuc > Convert.ToDouble(valuue))
+            {
+                Console.Write("\n\n" + sonuc + " parçalı çikolata gerekir.");
+
+                if (Convert.ToDouble(valuue) % 2 == 0 && Math.Pow(2, j)>=valuue)//çift değerler
+                {
+                    Console.Write("\n\n" + (j-1) + " kere kırmak gerekir.");
+
+                } else if (Convert.ToDouble(valuue) % 2 == 0) //2'nin kuvvetlerinde çikolata kırılmaz.
+                {
+                    Console.Write("\n\nÇikolata kırılmaz.");
+                }
+                else
+                {
+                    Console.Write("\n\n" + j + " kere kırmak gerekir.");//tek değerler
+
+                }
+                break;//çıkış
+            }
+        }
+
+    }
+}
